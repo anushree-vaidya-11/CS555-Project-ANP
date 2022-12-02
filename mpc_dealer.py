@@ -59,11 +59,13 @@ def dealer(data):
     privateKey = PrivateKey(p, g, x, iNumBits=sk)
 
     c1 = p1['c1']
+    c2 = p2['c2']
+    c3 = p3['c3']
     print(type(c1))
     #print(type(c1))
-    #c2 = int(p2['c2'].strip(), 10)
-    #c3 = int(p3['c3'].strip(), 10)
     m1 = elgamal.decrypt(privateKey,c1)
+    m2 = elgamal.decrypt(privateKey,c2)
+    m3 = elgamal.decrypt(privateKey,c3)
     print(m1)
 
 if __name__ == "__main__":
