@@ -223,7 +223,7 @@ def generate_keys(iNumBits=256, iConfidence=32):
 		privateKey = PrivateKey(p, g, x, iNumBits)
 		#print(id(privateKey))
 
-		return {'privateKey': privateKey, 'publicKey': publicKey}
+		return {'privateKey': privateKey, 'publicKey': publicKey, 'p': p, 'g': g, 'x': x}
 
 
 #encrypts a string sPlaintext using the public key k

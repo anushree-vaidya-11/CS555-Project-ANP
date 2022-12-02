@@ -7,51 +7,46 @@ import math
 import random
 from math import ceil
 from decimal import Decimal
+from random import randint
  
 FIELD_SIZE = 10**5
 
-'''
-def toBinary(a):
-  l,m=[],[]
-  for i in a:
-    l.append(ord(i))
-  for i in l:
-    m.append(int(bin(i)[2:]))
-  return m
-
-m1 = toBinary("messageone")
-m3 = toBinary("messagetwo")
-m4 = toBinary("messagethree")
-'''
-
 def generation():
-    keys = elgamal.generate_keys() #returns a dictionary {'privateKey': privateKeyObject, 'publicKey': publicKeyObject}
+    keys = elgamal.generate_keys() #returns a dictionary {'privateKey': privateKeyObject, 'publicKey': publicKeyObject, 'p': p, 'g': g, 'x': x}
     publicKey = keys['publicKey']
     privateKey = keys['privateKey']
     c1 = elgamal.encrypt(publicKey, "m1") #Generating the cipher text to be shared with the parties
     c2 = elgamal.encrypt(publicKey, "m2")
     c3 = elgamal.encrypt(publicKey, "m3")
-    #print(c1)
-    plaintext = elgamal.decrypt(privateKey, c1)
+    #print(privateKey.iNumBits)
+    #print(elgamal.decrypt(privateKey, c1))
     #print(plaintext)
     #print(type(publicKey))
     # (3,5) sharing scheme
     t, n = 3, 3  #n is number of parties and the polynomial will be of degree (t-1)
-    secret = id(privateKey)
+    secret = (privateKey.iNumBits)
     #print(f'Secret Key: {secret}')
  
     # Phase I: Generation of shares
     shares = generate_shares(n, t, secret)
+    #shares = _make_shares(secret, random=random)
 
     #print(f'Shares: {", ".join(str(share) for share in shares)}')
     
-
+    p = keys['p']
+    g = keys['g']
+    x = keys['x']
     file1 = open('ip.txt', 'w')
+    file1.write(str(secret)+ '\n')
     file1.write(c1+ '\n')
     file1.write(c2+ '\n')
     file1.write(c3+ '\n')
     for share in shares:
+      #print(type(share))
       file1.write(str(share)+ '\n')
+    file1.write(str(p)+ '\n')
+    file1.write(str(g)+ '\n')
+    file1.write(str(x)+ '\n')
     file1.close()
 
     file1 = open('ip.txt', 'r')
@@ -101,7 +96,5 @@ def generate_shares(n, m, secret):
         shares.append((x, polynom(x, coefficients)))
  
     return shares
-
-   
 
 generation()
