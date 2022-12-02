@@ -1,3 +1,6 @@
+#Project Part II - Dealer implementation where the Private Key is reconstructed and messages are decrypted
+#Author: Anushree Vaidya
+#Date: 12/2/2022
 
 import random
 from math import ceil
