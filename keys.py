@@ -15,9 +15,9 @@ def generation():
     keys = elgamal.generate_keys() #returns a dictionary {'privateKey': privateKeyObject, 'publicKey': publicKeyObject, 'p': p, 'g': g, 'x': x}
     publicKey = keys['publicKey']
     privateKey = keys['privateKey']
-    c1 = elgamal.encrypt(publicKey, "m1") #Generating the cipher text to be shared with the parties
-    c2 = elgamal.encrypt(publicKey, "m2")
-    c3 = elgamal.encrypt(publicKey, "m3")
+    c1 = elgamal.encrypt(publicKey, "43") #Generating the cipher text to be shared with the parties
+    c2 = elgamal.encrypt(publicKey, "3")
+    c3 = elgamal.encrypt(publicKey, "1001")
     #print(privateKey.iNumBits)
     #print(elgamal.decrypt(privateKey, c1))
     #print(plaintext)
@@ -37,7 +37,6 @@ def generation():
     g = keys['g']
     x = keys['x']
     file1 = open('ip.txt', 'w')
-    file1.write(str(secret)+ '\n')
     file1.write(c1+ '\n')
     file1.write(c2+ '\n')
     file1.write(c3+ '\n')
@@ -50,7 +49,7 @@ def generation():
     file1.close()
 
     file1 = open('ip.txt', 'r')
-    print(file1.read())
+    #print(file1.read())
     file1.close()
 
 def polynom(x, coefficients):
@@ -97,4 +96,3 @@ def generate_shares(n, m, secret):
  
     return shares
 
-generation()
