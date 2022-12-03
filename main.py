@@ -2,6 +2,7 @@ from smpc import VirtualMachine, PrivateScalar, SharedScalar
 from encryption import dealer
 from keys import *
 
+
 #El Gamal Encryption and key generation.
 MOD = 10001112223334445556667778889991
 generation()
@@ -34,5 +35,5 @@ shared_result=shared_product+shared_P3
 #Reconstruction
 result=shared_result.reconstruct(P1)
 
-
-print(result)
+with open('message.txt', 'w') as f:
+    f.write(str(result))
